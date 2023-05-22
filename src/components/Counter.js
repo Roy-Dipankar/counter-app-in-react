@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  decrementCount,
+  incrementCount,
+  resetCount,
+} from "../services/actions/counterAction";
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
+  const count = useSelector((state) => state.count);
+  const dispatch = useDispatch();
   const increment = () => {
-    setCount((count) => count + 1);
+    dispatch(incrementCount());
   };
 
   const decrement = () => {
-    setCount((count) => count - 1);
+    dispatch(decrementCount());
   };
 
   const reset = () => {
-    setCount((count) => (count = 0));
+    dispatch(resetCount());
   };
 
   return (
